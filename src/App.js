@@ -10,7 +10,9 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
-          <Route path="/" exact component={TodoListContainer} />
+          <main>
+            <Route path="/" exact component={TodoListContainer} />
+          </main>
         </div>
       </Provider>
     );
