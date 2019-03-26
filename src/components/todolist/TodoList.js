@@ -12,10 +12,14 @@ class TodoList extends PureComponent {
   }
 
   handleAddTodo = () => {
-    this.props.addTodo(this.state.todo);
+    this.props.addTodo(this.state.todo, false);
     this.setState({
       todo: "",
     });
+  }
+
+  toggleChecked = (index) => {
+    this.props.toggleTodo(index);
   }
 
   handleDelete = (index) => {
@@ -47,8 +51,8 @@ class TodoList extends PureComponent {
               {/* add map to render lis */}
               {this.props.todosList.map((todo, index) =>
                 <li key={index} className="list-item">
-                  <input type="checkbox" />
-                  <p className="todo-text">{todo}</p>
+                  <input type="checkbox" onChange={() => this.toggleChecked(index)} />
+                  <p className={ todo.done ? "text-strikethrough" : "todo-text"}>{todo.todo}</p>
                   <button onClick={() => this.handleDelete(index)}>
                     Delete
                   </button>

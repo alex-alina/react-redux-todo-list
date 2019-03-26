@@ -1,12 +1,25 @@
-import  { ADD_TODO, DELETE_THIS_TODO, DELETE_ALL_TODOS } from '../actions/todos';
+import  { ADD_TODO, DELETE_THIS_TODO, DELETE_ALL_TODOS, TOGGLE_TODO } from '../actions/todos';
 
 const initialState = [];
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
   case ADD_TODO:
-    const todo = action.todo;
-    return [ ...state, todo];
+    return [ ...state, action.payload];
+
+  case TOGGLE_TODO:
+    const todoIndex = action.index;
+    const changedState = state.map((todo, index) => {
+      if(index === todoIndex) {
+        return {
+          ...todo, 
+          done: !todo.done,
+        };
+      } else {
+        return todo;
+      }
+    });
+    return changedState;
 
   case DELETE_THIS_TODO:
     const targetIndex = action.index;
