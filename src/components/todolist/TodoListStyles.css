@@ -1,0 +1,20 @@
+.todo-text {
+  display: inline;
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo-list-container {
+  margin: 10px auto;
+  width: 300px;
+}
+
+.text-strikethrough {
+  text-decoration: line-through;
+  color: red;
+}
