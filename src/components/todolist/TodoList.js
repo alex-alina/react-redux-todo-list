@@ -22,6 +22,10 @@ class TodoList extends PureComponent {
     this.props.deleteTodo(index);
   }
 
+  handleDeleteAll = () => {
+    this.props.deleteAllTodos();
+  }
+
   render() {
     return (
       <div className="todo-container">
@@ -42,7 +46,7 @@ class TodoList extends PureComponent {
             <ul className="todo-list">
               {/* add map to render lis */}
               {this.props.todosList.map((todo, index) =>
-                <li className="list-item">
+                <li key={index} className="list-item">
                   <input type="checkbox" />
                   <p className="todo-text">{todo}</p>
                   <button onClick={() => this.handleDelete(index)}>
@@ -50,8 +54,12 @@ class TodoList extends PureComponent {
                   </button>
                 </li>
               )}
-
             </ul>
+          </div>
+          <div>
+            <button onClick={this.handleDeleteAll}>
+              Delete All Todos
+            </button>
           </div>
         </div>
       </div>

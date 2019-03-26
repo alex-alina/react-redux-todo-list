@@ -1,4 +1,4 @@
-import  { ADD_TODO, DELETE_THIS_TODO } from '../actions/todos';
+import  { ADD_TODO, DELETE_THIS_TODO, DELETE_ALL_TODOS } from '../actions/todos';
 
 const initialState = [];
 
@@ -12,7 +12,11 @@ const reducer = (state = initialState, action = {}) => {
     const targetIndex = action.index;
     const newState = state.filter((todo, index) => index !== targetIndex);
     return newState;
-    
+  
+  case DELETE_ALL_TODOS:
+  //state.length = 0;
+    return [];
+
   default:
     return state;
   }

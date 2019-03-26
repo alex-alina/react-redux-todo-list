@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { addNewTodo, deleteThisTodo } from '../../actions/todos';
+import { addNewTodo, deleteThisTodo, deleteAllTodos } from '../../actions/todos';
 // import './TodoListContainerStyles.css';
 import TodoList from './TodoList';
 
@@ -14,10 +14,14 @@ class TodoListContainer extends PureComponent {
     this.props.deleteThisTodo(index);
   }
 
+  deleteTodos = () => {
+    this.props.deleteAllTodos();
+  }
+
   render() {
     return (
       <div>
-        <TodoList addTodo={this.addTodo} todosList={this.props.todos} deleteTodo={this.deleteTodo} />
+        <TodoList addTodo={this.addTodo} todosList={this.props.todos} deleteTodo={this.deleteTodo} deleteAllTodos={this.deleteTodos}/>
       </div>
     );
   }
@@ -27,4 +31,4 @@ const mapStateToProps = state => ({
   todos: state.todos
 });
 
-export default connect(mapStateToProps, { addNewTodo, deleteThisTodo })(TodoListContainer);
+export default connect(mapStateToProps, { addNewTodo, deleteThisTodo, deleteAllTodos })(TodoListContainer);
