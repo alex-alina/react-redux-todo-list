@@ -1,4 +1,4 @@
-import  { ADD_TODO } from '../actions/todos';
+import  { ADD_TODO, DELETE_THIS_TODO } from '../actions/todos';
 
 const initialState = [];
 
@@ -7,8 +7,12 @@ const reducer = (state = initialState, action = {}) => {
   case ADD_TODO:
     const todo = action.todo;
     return [ ...state, todo];
-  
 
+  case DELETE_THIS_TODO:
+    const targetIndex = action.index;
+    const newState = state.filter((todo, index) => index !== targetIndex);
+    return newState;
+    
   default:
     return state;
   }

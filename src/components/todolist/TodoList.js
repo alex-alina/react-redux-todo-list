@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-// import './TodoListStyles.css';
+import './TodoListStyles.css';
 
 class TodoList extends PureComponent {
   state = {}
@@ -11,11 +11,15 @@ class TodoList extends PureComponent {
     });
   }
 
-  handleTodo = () => {
+  handleAddTodo = () => {
     this.props.addTodo(this.state.todo);
     this.setState({
       todo: "",
     });
+  }
+
+  handleDelete = (index) => {
+    this.props.deleteTodo(index);
   }
 
   render() {
@@ -31,14 +35,20 @@ class TodoList extends PureComponent {
             onChange={this.handleChange}
             autoComplete="off"
           />
-          <button onClick={this.handleTodo}>
+          <button onClick={this.handleAddTodo}>
             Add
           </button>
           <div className="todo-list-container">
             <ul className="todo-list">
               {/* add map to render lis */}
-              {this.props.todosList.map(todo =>
-                <li>{todo}</li>
+              {this.props.todosList.map((todo, index) =>
+                <li className="list-item">
+                  <input type="checkbox" />
+                  <p className="todo-text">{todo}</p>
+                  <button onClick={() => this.handleDelete(index)}>
+                    Delete
+                  </button>
+                </li>
               )}
 
             </ul>

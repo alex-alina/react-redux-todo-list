@@ -1,0 +1,15 @@
+.todo-text {
+  display: inline-block;
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo-list-container {
+  margin: 10px auto;
+  width: 300px;
+}
