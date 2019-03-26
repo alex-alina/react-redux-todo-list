@@ -52,7 +52,7 @@ class TodoList extends PureComponent {
               {this.props.todosList.map((todo, index) =>
                 <li key={index} className="list-item">
                   <input type="checkbox" onChange={() => this.toggleChecked(index)} />
-                  <p className={ todo.done ? "text-strikethrough" : "todo-text"}>{todo.todo}</p>
+                  <p className={todo.done ? "text-strikethrough" : "todo-text"}>{todo.todo}</p>
                   <button onClick={() => this.handleDelete(index)}>
                     Delete
                   </button>
@@ -61,9 +61,12 @@ class TodoList extends PureComponent {
             </ul>
           </div>
           <div>
-            <button onClick={this.handleDeleteAll}>
-              Delete All Todos
-            </button>
+            {this.props.todosList.length !== 0 ?
+              <button onClick={this.handleDeleteAll}>
+                Delete All Todos
+              </button>
+              : null
+            }
           </div>
         </div>
       </div>
